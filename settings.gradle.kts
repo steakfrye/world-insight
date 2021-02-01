@@ -1,3 +1,1 @@
-
-rootProject.name = "world-insight"
-
+rootProject.name = "application"
