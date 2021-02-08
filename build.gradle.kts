@@ -20,8 +20,12 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("jakarta.xml.bind:jakarta.xml.bind-api:3.0.0")
+    implementation("jakarta.activation:jakarta.activation-api:2.0.0")
+    implementation("com.sun.xml.bind:jaxb-impl:3.0.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.mockito:mockito-core:2.8.9")
+    testImplementation("org.testng:testng:7.1.0")
+    testImplementation("org.mockito:mockito-core:2.22.0")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 }
 

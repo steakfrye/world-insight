@@ -5,10 +5,15 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class DataController {
-    private val service = DataService()
+    private val dataService = DataService()
 
     @GetMapping("/")
     fun getHomepage(): String {
-        return service.getHomepage()
+        return dataService.getHomepage()
+    }
+
+    @GetMapping("/homeland")
+    fun getHomelandSecurityLevel(): String {
+        return dataService.getDepartmentOfStateAlerts()
     }
 }
