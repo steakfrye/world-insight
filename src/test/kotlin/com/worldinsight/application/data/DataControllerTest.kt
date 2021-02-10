@@ -1,33 +1,43 @@
 package com.worldinsight.application.data
 
-import com.nhaarman.mockitokotlin2.mock
+import com.google.gson.Gson
 import com.nhaarman.mockitokotlin2.whenever
-import org.testng.annotations.BeforeTest
-import org.testng.annotations.Test
+import com.worldinsight.application.departmentofstate.Channel
+import com.worldinsight.application.departmentofstate.Item
+import com.worldinsight.application.departmentofstate.RssAlertFeedData
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.Mock
+import org.mockito.junit.jupiter.MockitoExtension
+import org.springframework.http.ResponseEntity
 
+@ExtendWith(MockitoExtension::class)
 internal class DataControllerTest {
     private lateinit var dataController: DataController
-    private lateinit var dataService: DataService
 
-    @BeforeTest
+    @Mock private lateinit var dataService: DataService
+
+    @BeforeEach
     fun setup() {
-        dataController = DataController()
-        dataService = mock()
+        dataController = DataController(dataService)
     }
 
     @Test
     fun getHomepage_called_messageReturned() {
-        whenever(dataService.getHomepage()).thenReturn("The United States of America is NOT SAFE for travel")
+        whenever(dataService.getHomepage()).thenReturn("Expected Message")
         val result = dataController.getHomepage()
 
-        assert(result == "The United States of America is NOT SAFE for travel")
+        assertEquals(result, "Expected Message")
     }
 
     @Test
     fun testGetHomelandSecurityLevel() {
-        whenever(dataService.getDepartmentOfStateAlerts()).thenReturn("Senegal has an alert status of 'Level 3: Reconsider Travel'")
+        val stubAlert = RssAlertFeedData(Channel(listOf(Item(title = "Expected Title"))))
+        whenever(dataService.getDepartmentOfStateAlerts()).thenReturn(stubAlert)
         val result = dataController.getHomelandSecurityLevel()
 
-        assert(result == "Senegal has an alert status of 'Level 3: Reconsider Travel'")
+        assertEquals(result, ResponseEntity.ok(Gson().toJson(stubAlert.channel)))
     }
 }

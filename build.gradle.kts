@@ -23,9 +23,10 @@ dependencies {
     implementation("jakarta.xml.bind:jakarta.xml.bind-api:3.0.0")
     implementation("jakarta.activation:jakarta.activation-api:2.0.0")
     implementation("com.sun.xml.bind:jaxb-impl:3.0.0")
+    implementation("com.google.code.gson:gson:2.8.6")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.testng:testng:7.1.0")
-    testImplementation("org.mockito:mockito-core:2.22.0")
+    testImplementation("org.mockito:mockito-inline:3.7.7")
+    testImplementation("org.mockito:mockito-junit-jupiter:3.7.7")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 }
 

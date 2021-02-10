@@ -1,22 +1,19 @@
 package com.worldinsight.application.data
 
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
-import com.worldinsight.application.departmentofstate.Channel
-import com.worldinsight.application.departmentofstate.RssAlertFeed
-import org.testng.Assert.assertEquals
-import org.testng.annotations.BeforeTest
-import org.testng.annotations.Test
-import java.net.URL
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.junit.jupiter.MockitoExtension
 
+@ExtendWith(MockitoExtension::class)
 internal class DataServiceTest {
     private lateinit var dataService: DataService
-    private lateinit var xmlReader: XmlReader
 
-    @BeforeTest
+    @BeforeEach
     fun setup() {
         dataService = DataService()
-        xmlReader = mock()
     }
 
     @Test
@@ -26,11 +23,9 @@ internal class DataServiceTest {
     }
 
     @Test
-    fun testGetDepartmentOfStateAlerts() {
-        val stubAlert = RssAlertFeed(channels = listOf(Channel(title = "title goes here")))
-        whenever(xmlReader.readFromUrl<RssAlertFeed>(URL("https://travel.state.gov/_res/rss/TAsTWs.xml"))).thenReturn(stubAlert)
+    fun getDepartmentOfStateAlerts_successfulCall_objectReturned() {
         val result = dataService.getDepartmentOfStateAlerts()
 
-        assertEquals(result, stubAlert)
+        assertNotNull(result)
     }
 }

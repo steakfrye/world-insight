@@ -10,19 +10,13 @@ import kotlin.collections.List
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "rss")
-data class RssAlertFeed(
+data class RssAlertFeedData(
     @field:XmlElement(name = "channel")
-    var channels: List<Channel>? = ArrayList()
+    var channel: Channel? = null
 )
 
 @XmlRootElement(name = "channel")
 data class Channel(
-    @set:XmlElement(namespace = "title")
-    var title: String? = null,
-    @set:XmlElement
-    var link: String? = null,
-    @set:XmlElement
-    var description: String? = null,
     @set:XmlElement(name = "item")
     var items: List<Item>? = ArrayList()
 )
@@ -36,19 +30,6 @@ class Item(
     @set:XmlElement
     var link: String? = null,
     @set:XmlElement
-    var guid: String? = null,
-    @set:XmlElement(name = "category")
-    var category: List<Category>? = null,
-    @set:XmlElement
-    var identifier: String? = null,
-    @set:XmlElement
     var description: String? = null
 )
 
-@XmlRootElement(name = "category")
-class Category(
-    @set:XmlElement
-    var domain: String? = null,
-    @set:XmlElement
-    var text: String? = null
-)
