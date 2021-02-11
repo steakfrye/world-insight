@@ -14,10 +14,17 @@ phases:
       - apt-get install -y unzip
       - unzip gradle-6.8-bin.zip
       - /bin/bash -c "source $HOME/.bashrc"
+    finally:
+      - rm -rf /usr/local/bin/docker-compose
+      - rm -rf gradle-6.8-bin.zip
   build:
+    run-as: root
     commands:
       - echo Build started on `date`
       - echo Building application...
+      - echo Current directory is `pwd`
+      - whereis gradle
+      - which gradle
       - gradle build
   post_build:
     commands:
