@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+        - gradle build
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling Java...
+      - gradle test
+  post_build:
+    commands:
+      - echo Build completed on `date`
+
