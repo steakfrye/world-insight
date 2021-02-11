@@ -2,4 +2,4 @@
 
 set -e
 
-sudo docker-compose down
+docker-compose down
