@@ -3,7 +3,15 @@ version: 0.2
 phases:
   install:
     commands:
-        - gradle build
+      - curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+      - chmod +x /usr/local/bin/docker-compose
+      - curl -L https://services.gradle.org/distributions/gradle-6.8-bin.zip -o gradle-6.8-bin.zip
+      - apt-get install -y unzip
+      - unzip gradle-6.8-bin.zip
+      - ENV GRADLE_HOME=/app/gradle-2.4
+      - ENV PATH=$PATH:$GRADLE_HOME/bin
+      - /bin/bash -c "source $HOME/.bashrc"
+      - gradle build
   build:
     commands:
       - echo Build started on `date`
