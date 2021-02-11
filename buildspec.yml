@@ -1,27 +1,7 @@
 version: 0.2
 
-env:
-  variables:
-    GRADLE_HOME: "/app/gradle-6.8"
-    PATH: "$PATH:$GRADLE_HOME/bin"
-
 phases:
   install:
     commands:
-#      - curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-#      - chmod +x /usr/local/bin/docker-compose
-#      - curl -L https://services.gradle.org/distributions/gradle-6.8-bin.zip -o /usr/local/bin/gradle-6.8-bin.zip
-#      - apt-get install -y unzip
-#      - unzip /usr/local/bin/gradle-6.8-bin.zip
-#      - rm -rf /usr/local/bin/gradle-6.8-bin.zip
-#      - /bin/bash -c "source $HOME/.bashrc"
-  build:
-    run-as: root
-    commands:
-      - echo Build started on `date`
-      - echo Building application...
-      - /usr/local/bin/gradle-6.8-bin/bin/gradle build
-  post_build:
-    commands:
-      - echo Build completed on `date`
-
+      - curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+      - chmod +x /usr/local/bin/docker-compose
