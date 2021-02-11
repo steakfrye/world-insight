@@ -1,5 +1,10 @@
 version: 0.2
 
+env:
+  variables:
+    GRADLE_HOME: "/app/gradle-6.8"
+    PATH: "$PATH:$GRADLE_HOME/bin"
+
 phases:
   install:
     commands:
@@ -8,15 +13,12 @@ phases:
       - curl -L https://services.gradle.org/distributions/gradle-6.8-bin.zip -o gradle-6.8-bin.zip
       - apt-get install -y unzip
       - unzip gradle-6.8-bin.zip
-      - echo 'export GRADLE_HOME=/app/gradle-6.8' >> $HOME/.bashrc
-      - echo 'export PATH=$PATH:$GRADLE_HOME/bin' >> $HOME/.bashrc
       - /bin/bash -c "source $HOME/.bashrc"
-      - gradle build
   build:
     commands:
       - echo Build started on `date`
-      - echo Compiling Java...
-      - gradle test
+      - echo Building application...
+      - gradle build
   post_build:
     commands:
       - echo Build completed on `date`
