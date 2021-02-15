@@ -6,5 +6,5 @@ RUN gradle build --no-daemon
 FROM openjdk:11
 RUN mkdir /opt/app
 
-COPY ./build/libs/application-0.0.1-SNAPSHOT.jar /opt/app/app.jar
-CMD ["java", "-jar", "/opt/app/app.jar"]
+COPY --from=build /home/gradle/src/build/libs/*.jar /app/spring-boot-application.jar
+ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/spring-boot-application.jar"]
