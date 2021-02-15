@@ -6,5 +6,5 @@ RUN gradle build --no-daemon
 FROM openjdk:11
 RUN mkdir /opt/app
 
-COPY build/libs/application-0.0.1-SNAPSHOT.jar /opt/app/app.jar
+COPY ./build/libs/application-0.0.1-SNAPSHOT.jar /opt/app/app.jar
 CMD ["java", "-jar", "/opt/app/app.jar"]
