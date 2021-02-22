@@ -3,16 +3,3 @@ os: linux
 files:
   - source: /
     destination: /tmp
-hooks:
-  AfterInstall:
-    - location: scripts/configure_docker.sh
-      timeout: 10
-      runas: root
-  ApplicationStart:
-    - location: scripts/start_container.sh
-      timeout: 10
-      runas: root
-  ApplicationStop:
-    - location: scripts/kill_container.sh
-      timeout: 20
-      runas: root
